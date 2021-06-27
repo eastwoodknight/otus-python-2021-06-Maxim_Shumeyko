@@ -8,8 +8,8 @@ from homework_02 import exceptions
 
 class Plane(Vehicle):
 
-    def __init__(self, weight=0, started=0, fuel=0, fuel_consumption=0, max_cargo=0):
-        super().__init__(weight, started, fuel, fuel_consumption)
+    def __init__(self, weight=0, fuel=0, fuel_consumption=0, max_cargo=0):
+        super().__init__(weight, fuel, fuel_consumption)
         self.max_cargo = max_cargo
         self.cargo = 0
 
