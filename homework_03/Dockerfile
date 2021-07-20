@@ -12,9 +12,7 @@ COPY pyproject.toml .
 RUN poetry install
 
 COPY * ./
-COPY src ./
 
 EXPOSE 8000
 
-CMD "ls"
 CMD ["uvicorn", "main:app", "--host=0.0.0.0"]
