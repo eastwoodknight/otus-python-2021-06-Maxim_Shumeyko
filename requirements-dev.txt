@@ -10,7 +10,6 @@ asyncpg==0.24.0
 attrs==21.2.0
 chardet==4.0.0
 greenlet==1.1.1
-idna==3.2
 loguru==0.5.3
 multidict==5.1.0
 SQLAlchemy==1.4.23
