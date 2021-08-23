@@ -53,7 +53,11 @@ class User(Base):
     )
     email = Column(String(64), default="", server_default="")
 
-    posts = relationship("Post", back_populates="user")
+    posts = relationship(
+        "Post", back_populates="user",
+#        remote_side="Post.user_id",
+#        primaryjoin="User.id==foreign(Post.user_id)",
+    )
 
     def __str__(self):
         return (
@@ -80,7 +84,11 @@ class Post(Base):
         nullable=False, 
     )
 
-    user = relationship("User", back_populates="posts")
+    user = relationship(
+        "User", back_populates="posts",
+#        remote_side="User.id",
+#        primaryjoin="Post.user_id==foreign(User.id)",
+    )
 
     def __str__(self):
         return (

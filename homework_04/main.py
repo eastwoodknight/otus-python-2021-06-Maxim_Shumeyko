@@ -34,6 +34,7 @@ async def add_users_and_posts_to_db():
         get_posts_data(requests_num=100),
     )
 
+    logger.info("Uploaded {} users and {} posts", len(users_data), len(posts_data))
     logger.info("DONE")
 
     # update database
@@ -43,6 +44,7 @@ async def add_users_and_posts_to_db():
             session.add_all(
                 list(
                     User(
+                        id = d['id'],
                         name = d['name'], 
                         username = d['username'],
                         email = d['email']

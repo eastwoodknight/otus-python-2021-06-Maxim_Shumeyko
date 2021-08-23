@@ -9,6 +9,7 @@ from typing import List
 from loguru import logger
 
 from aiohttp import ClientSession
+from aiohttp.client_exceptions import ContentTypeError
 
 
 USERS_DATA_URL = "https://jsonplaceholder.typicode.com/users" 
@@ -26,7 +27,11 @@ async def fetch_json(service: Service) -> dict:
     async with ClientSession() as session:
         result = await session.get(service.url)
 
-    result = await result.json()
+    try:
+        result = await result.json()
+    except ContentTypeError as e:
+        logger.error("Failed to upload {}", service.url)
+        return None
     result = {key: value for key, value in result.items()
               if key in service.fields}
 
@@ -38,7 +43,7 @@ async def get_data(
     url: str,
     fields: List[str],
     name: str,
-    timeout: int = 30,
+    timeout: int = 60,
 ) -> List[dict]:
 
     services = []
@@ -62,7 +67,7 @@ async def get_data(
     for task in pending:
         task.cancel()
 
-    results = [task.result() for task in done]
+    results = [task.result() for task in done if task.result() is not None]
     return results
     
 
@@ -73,7 +78,8 @@ async def get_users_data(requests_num: int = 10) -> List[dict]:
         fields=['name', 'username', 'email', 'id'],
         name="user"
     )
-    result = sorted(result, key = lambda d: d['id'])
+
+#    result = sorted(result, key = lambda d: d['id'])
     return result
 
 

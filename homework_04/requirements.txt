@@ -1,0 +1,17 @@
+docker==5.0.0
+requests==2.25.1
+Faker==8.1.2
+pytest==6.2.3
+pytest-asyncio==0.15.1
+
+aiohttp==3.7.4.post0
+async-timeout==3.0.1
+asyncpg==0.24.0
+attrs==21.2.0
+chardet==4.0.0
+greenlet==1.1.1
+loguru==0.5.3
+multidict==5.1.0
+SQLAlchemy==1.4.23
+typing-extensions==3.10.0.0
+yarl==1.6.3
