@@ -38,7 +38,7 @@ async def get_data(
     url: str,
     fields: List[str],
     name: str,
-    timeout: int = 20,
+    timeout: int = 30,
 ) -> List[dict]:
 
     services = []

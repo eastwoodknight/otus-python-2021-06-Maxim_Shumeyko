@@ -31,7 +31,7 @@ async def add_users_and_posts_to_db():
     posts_data: List[dict]
     users_data, posts_data = await asyncio.gather(
         get_users_data(requests_num=10),
-        get_posts_data(requests_num=40),
+        get_posts_data(requests_num=100),
     )
 
     logger.info("DONE")
@@ -51,6 +51,8 @@ async def add_users_and_posts_to_db():
                 )
             )
 
+    async with Session() as session:
+        async with session.begin():
             # add posts
             session.add_all(
                 list(
