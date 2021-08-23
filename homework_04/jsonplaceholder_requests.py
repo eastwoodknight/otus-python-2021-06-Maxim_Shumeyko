@@ -52,7 +52,10 @@ async def get_data(
         )
 
     done, pending = await asyncio.wait(
-        set(asyncio.create_task(fetch_json(service)) for service in services),
+        set(
+            asyncio.create_task(fetch_json(service)) 
+            for service in services
+        ),
         timeout=timeout,
     )
 
@@ -70,6 +73,7 @@ async def get_users_data(requests_num: int = 10) -> List[dict]:
         fields=['name', 'username', 'email'],
         name="user"
     )
+
 
 async def get_posts_data(requests_num: int = 40) -> List[dict]:
     return await get_data(

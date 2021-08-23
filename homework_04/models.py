@@ -7,8 +7,8 @@
 для модели Post обязательными являются user_id, title, body
 создайте связи relationship между моделями: User.posts и Post.user
 """
-
 import os
+
 from sqlalchemy import (
     Column, Integer, String, Text, ForeignKey,
 )
@@ -30,10 +30,10 @@ class Base:
     id = Column(Integer, primary_key=True)
 
 
-PG_CONN_URI = os.environ.get("SQLALCHEMY_PG_CONN_URI") or "postgresql+asyncpg://user:password@localhost/postgres"
+PG_CONN_URI = os.environ.get("SQLALCHEMY_PG_CONN_URI") \
+              or "postgresql+asyncpg://user:password@localhost/postgres"
 
 engine = create_async_engine(PG_CONN_URI, echo=True)
-#engine = create_async_engine("sqlite:///example_db.sqlite", echo=True)
 Base = declarative_base(bind=engine, cls=Base)
 
 async_session = sessionmaker(

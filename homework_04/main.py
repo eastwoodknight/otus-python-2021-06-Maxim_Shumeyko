@@ -36,6 +36,7 @@ async def add_users_and_posts_to_db():
 
     logger.info("DONE")
 
+    # update database
     async with Session() as session:
         async with session.begin():
             # add users
@@ -68,6 +69,7 @@ async def create_tables():
         await conn.run_sync(Base.metadata.drop_all)
         await conn.run_sync(Base.metadata.create_all)
         
+
 async def async_main():
     await create_tables()
     await add_users_and_posts_to_db()
