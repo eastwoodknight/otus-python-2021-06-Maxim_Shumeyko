@@ -67,12 +67,14 @@ async def get_data(
     
 
 async def get_users_data(requests_num: int = 10) -> List[dict]:
-    return await get_data(
+    result = await get_data(
         requests_num=requests_num, 
         url=USERS_DATA_URL,
-        fields=['name', 'username', 'email'],
+        fields=['name', 'username', 'email', 'id'],
         name="user"
     )
+    result = sorted(result, key = lambda d: d['id'])
+    return result
 
 
 async def get_posts_data(requests_num: int = 40) -> List[dict]:
