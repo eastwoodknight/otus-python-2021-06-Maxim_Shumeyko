@@ -38,9 +38,8 @@ def filter_numbers(list_, filter_type):
         EVEN: 
             lambda x: not x % 2,
         PRIME: 
-            lambda x:  (x > 1) and all(x % y for y in islice(count(2), int(sqrt(x)) + 1))
-#                       (x > 0 and x < 4)
-#                       or all(x % y for y in islice(count(2), int(sqrt(x)) + 1))
+            lambda x: (x > 1 and x < 4)
+                       or all(x % y for y in islice(count(2), int(sqrt(x)) + 1))
     }
 
     return list(filter(filter_dict[filter_type], list_))
