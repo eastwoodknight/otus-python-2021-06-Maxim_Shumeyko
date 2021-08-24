@@ -87,7 +87,7 @@ async def get_posts_data(requests_num: int = 40) -> List[dict]:
     return await get_data(
         requests_num=requests_num, 
         url=POSTS_DATA_URL,
-        fields=['userId', 'title', 'body'],
+        fields=['id', 'userId', 'title', 'body'],
         name="post"
     )
 

@@ -59,6 +59,7 @@ async def add_users_and_posts_to_db():
             session.add_all(
                 list(
                     Post(
+                        id = d['id'],
                         title = d['title'], 
                         body = d['body'],
                         user_id = d['userId']
