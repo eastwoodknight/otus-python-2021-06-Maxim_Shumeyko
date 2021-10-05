@@ -1,0 +1,16 @@
+{% extends "blog_data/basic.html" %}
+{% load static %}
+
+{% block title %}
+Update post
+{% endblock %}
+
+{% block content %}
+    <!-- Post Content -->
+    <h2> Update post </h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="save">
+    </form>
+{% endblock %}
