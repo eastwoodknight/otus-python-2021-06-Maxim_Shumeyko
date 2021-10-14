@@ -1,0 +1,37 @@
+{% extends "blog_data/base.html" %}
+{% load static %}
+
+{% block title %}
+Clean Blog - Start Bootstrap Theme
+{% endblock %}
+
+{% block content %}
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url('{% static 'blog_data/post-bg.jpg' %}')">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="post-heading">
+              <h1>{{ post.title }}</h1>
+              <h2 class="subheading">{{ post.subtitle }}</h2>
+              <span class="meta">Posted by
+                {{ post.author.name }}
+                on {{ post.date_posted|date:"d.m.Y H.i.s" }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Post Content -->
+    <article>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            {{ post.content|safe }}
+          </div>
+        </div>
+      </div>
+    </article>
+
+{% endblock %}
